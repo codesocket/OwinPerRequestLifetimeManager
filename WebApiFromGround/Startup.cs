@@ -19,10 +19,11 @@ namespace WebApiFromGround
 
             var config = new HttpConfiguration();
             ConfigureWebApi(config);
-
-            var container = MyUnityContainer.Instance;
+                        
             Action<IOwinContext> action = ctx =>
             {
+                var container = MyUnityContainer.Instance;
+
                 container.RegisterType<MyService>(new PerRequestLifetimeManager(ctx));
                 container.RegisterType<MyService2>(new PerRequestLifetimeManager(ctx));
             };
